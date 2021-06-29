@@ -1,7 +1,9 @@
 ﻿clear all
 format long
 % Vanderson da Silva dos Santos
+% Email: vanderson.santos@usp.br 
 % NUSP: 11259715
+
 %===============================================================
 % FUNÇÕES
 %===============================================================
