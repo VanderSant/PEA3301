@@ -28,7 +28,6 @@ function y = printFasor(x, nome)
 end
 
 function fasor = make_complex(absol,angle)
-    e = 2.71828182845;
     angle_pi = angle*pi/180;
     fasor = absol*(e^(1J*angle_pi));
     return
