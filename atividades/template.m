@@ -5,6 +5,16 @@ format long
 % NUSP: 11259715
 
 %===============================================================
+% CONSTANTES
+%===============================================================
+alfa = exp(J*120*pi/180); #operador alfa
+grau_mais_30 = exp(J*30*pi/180); #fasor de modulo e fase 30°
+grau_menos_30 = exp(J*(-30)*pi/180); #fasor de modulo e fase -30°
+T = [[1, 1, 1];        #matrix T
+     [1, alfa^2, alfa];
+     [1, alfa, alfa^2]]; 
+     
+%===============================================================
 % FUNÇÕES
 %===============================================================
 function printFasores(V)
@@ -51,15 +61,21 @@ function imp = triangulo_para_estrela(zab,zbc,zca)
     return
 endfunction
 
-%===============================================================
-% CONSTANTES
-%===============================================================
-alfa = exp(J*120*pi/180); #operador alfa
-grau_mais_30 = exp(J*30*pi/180); #fasor de modulo e fase 30°
-grau_menos_30 = exp(J*(-30)*pi/180); #fasor de modulo e fase -30°
-T = [1, 1, 1;        #matrix T
-     1, alfa^2, alfa;
-     1, alfa, alfa^2]; 
+function z_sim = get_z_sim(za,zb,zc,zab,zac,zbc)
+    alfa = exp(J*120*pi/180);
+    T = [[1, 1, 1];
+         [1, alfa^2, alfa];
+         [1, alfa, alfa^2]];
+    z_sim = [[za,zab,zac];[zab,zb,zbc];[zac,zbc,zc]];
+    z_sim = inv(T)*z_sim*T;
+    return
+endfunction
+
+function matrix = round_matrix(ma,n)
+    matrix = ma;
+    matrix = round(matrix .* (10**n)) ./ (10**n);
+    return
+endfunction
 
 %===============================================================
 % DADOS ENUNCIADO
